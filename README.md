@@ -1,8 +1,9 @@
 
-You need [node.js](https://nodejs.org/en/) installed to run this. There are many ways to do this, but you can use Homebrew on OSX. See node notes below for some more info.
+You need [node.js](https://nodejs.org/en/) installed to run this. There are many ways to do this, but you can use Homebrew on OSX.
+See node notes below for some more info.
 
-
-####Setup:
+-----
+#### Setup:
 clone and install from your chosen parent directory:
 `git clone https://github.com/NicholasJV/pencil-writer-kata.git`
 `npm install`
@@ -19,8 +20,8 @@ The tests will reload automatically on changes to the files. You can view the te
 The html file should be overwritten every file change, so just refresh the browser to see updated test output.
 
 
----
-#####node notes:
+-----
+##### node notes:
 some people have issues with homebrew installation:
 https://gist.github.com/DanHerbert/9520689
 version managers can be a good idea:
