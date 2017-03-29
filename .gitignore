@@ -1,1 +1,5 @@
+# dependencies
 node_modules
+
+# test output
+test/karmaUnitTests.html
