@@ -1,5 +1,5 @@
 
-describe("Writing tools test", function(){
+describe("Writing Tools", function(){
 
     var pencil_01,
         pencil_02,
