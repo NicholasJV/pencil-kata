@@ -17,7 +17,6 @@ function Paper (title, initial_text){
 
 Pencil.prototype.sharpen = function() {
     this.currentPointDurability = this.pointDurabilityRating
-    // TODO: explore edge cases
     return this
 }
 
@@ -48,19 +47,4 @@ Pencil.prototype.degradePoint = function(text) {
     return this
 }
 
-Pencil.prototype.degradeEraser = function(text) {
-    var points = 0
-    for (var i = 0; i < text.length; i++) {
-        var code = text.charCodeAt(i)
-        if (code <= 122 && code >= 33){
-            points++
-        }
-    }
-    // less important for eraser, but ensure no negative degradation
-    if (points > this.currentEraserDurability) {
-      this.currentEraserDurability = 0
-    } else {
-      this.currentEraserDurability -= points
-    }
-    return this
-}
+// move eraser degrading logic to Erase function

@@ -3,7 +3,8 @@ describe("Editing : ", function(){
 
     var pencil_01,
         pencil_02_stubby_eraser,
-        page_01
+        page_01,
+        page_02
 
     beforeEach(function(){
         // Pencil(point, eraser, length)
@@ -12,6 +13,9 @@ describe("Editing : ", function(){
         // Paper(title, initial_text)
         page_01 = new Paper('Page_01',
             'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
+        )
+        page_02 = new Paper('Page_02',
+            'How much                        chuck if a     chuck could chuck     ?'
         )
     })
 
@@ -28,9 +32,7 @@ describe("Editing : ", function(){
           'How much wood would a woodchuck chuck if a     chuck could chuck     ?'
         )
         Erase(page_01, pencil_01, ' wood would a woodchuck ')
-        expect(page_01.text).toBe(
-          'How much                        chuck if a     chuck could chuck     ?'
-        )
+        expect(page_01.text).toEqual(page_02.text)
     })
 
     it("Erases nothing if phrase is not found, even on close edge cases", function(){
@@ -55,6 +57,11 @@ describe("Editing : ", function(){
         expect(page_01.text).toBe(
             'How much wood would a woodchuck chuck if a woodchuck coul            ?'
         )
+    })
+
+    xit("Adds an edit text into first whitespace properly", function(){
+        // InsertEdit(paper, pencil, textToInsert)
+        
     })
 
 })
