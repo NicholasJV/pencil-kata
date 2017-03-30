@@ -17,11 +17,11 @@ To run tests:
 
 `npm test`
 
-This will launch chrome as the browser environment by default. It will automatically close when you stop the test process in terminal (and vice versa -- closing the browser will stop the test process).
+This will launch chrome as the browser environment by default. It will automatically close when you stop the test process in terminal (and vice versa -- closing the browser will stop the test process). Stop the test process with `Ctrl-C`. Safari and Firefox launchers will also install by default; to specify which ones launch automatically, uncomment them in the `browsers` property of `karma.conf.js`
 
 The tests will reload automatically on changes to the files. You can view the test output in the console, or use
 
-`npm run browserTestOutput`
+`npm run browserTestOutput` to open an html file that displays the test output in a clear format.
 
 The html file should be overwritten every file change, so just refresh the browser to see updated test output.
 
@@ -33,6 +33,6 @@ some people have issues with homebrew installation:
 
 https://gist.github.com/DanHerbert/9520689
 
-version managers can be a good idea:
+version managers are considered best practice by reputable sources:
 
 [nvm](https://github.com/creationix/nvm/) or [n](https://www.npmjs.com/package/n2)

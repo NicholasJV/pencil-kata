@@ -66,4 +66,8 @@ describe("Writing Process", function(){
         )
     })
 
+    it("Writes more complicated text with correct point degradation", function(){
+        
+    })
+
 })
