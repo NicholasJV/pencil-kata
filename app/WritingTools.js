@@ -9,18 +9,23 @@ function Pencil (pointDurability, eraserDurability, length) {
     this.currentEraserDurability = eraserDurability
 }
 
+function Paper (title, initial_text){
+    this.title = title
+    this.text = initial_text
+    this.timestamp = Date.now()
+}
+
 Pencil.prototype.sharpen = function() {
     this.currentPointDurability = this.pointDurabilityRating
     // TODO: explore edge cases
     return this
 }
 
-/*** ASCII reminder:
+/*** ASCII reminder:   --------------*|
  *   33-64 puncuation and numbers
  *   65-90 uppercase letters
  *   91-122 lower lowercase letters
- *-------------------------------------*/
-
+ *-----------------------------------*/
 Pencil.prototype.degradePoint = function(text) {
     var points = 0
     for (var i = 0; i < text.length; i++) {
@@ -60,10 +65,4 @@ Pencil.prototype.degradeEraser = function(text) {
       this.currentEraserDurability -= points
     }
     return this
-}
-
-function Paper (title, initial_text){
-    this.title = title
-    this.text = initial_text
-    this.timestamp = Date.now()
 }

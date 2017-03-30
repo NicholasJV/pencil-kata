@@ -1,10 +1,11 @@
 
-describe("WRITING TOOLS:", function(){
+describe("WRITING : ", function(){
 
     var pencil_01,
         pencil_02,
         page_01,
         page_02,
+        page_03,
         textDegrade25 = 'XXXXX XXXXX xxxxx'
         textDegrade51 = 'XXXXX XXXXX XXXXX XXXXX 1@3$5%7^9) x'
 
@@ -16,6 +17,7 @@ describe("WRITING TOOLS:", function(){
         // Paper(title, initial_text)
         page_01 = new Paper('Page_01', 'The quick brown fox')
         page_02 = new Paper('Page_02', '...jumped over the lazy dog.')
+        page_03 = new Paper('Page_03', '') // intentionally blank for testing
     })
 
     it("Creates a pencil with correct properties", function(){
@@ -31,6 +33,24 @@ describe("WRITING TOOLS:", function(){
         expect( page_02.text ).toEqual('...jumped over the lazy dog.')
         // somewhat arbitrary test just for fun:
         expect( page_01.timestamp ).not.toBeGreaterThan( page_02.timestamp )
+    })
+
+    it("Writes to a clean sheet of paper correctly with simple point degradation", function(){
+        // Write(paper, pencil, newText)
+        Write(page_03, pencil_01, 'I like to eat apples and bananas')
+        expect(page_03.text).toBe('I like to eat apples and bananas')
+        expect(pencil_01.currentPointDurability).toBe( // hacky but will refactor later
+          200 - 'iiliketoeatapplesandbananas'.length
+        )
+    })
+
+    it("Writes to a piece of paper multiple times correctly", function(){
+        // Write(paper, pencil, newText)
+        Write(page_01, pencil_01, ' jumped over the lazy dog.')
+        Write(page_01, pencil_02, ' Then a pig flew by.')
+        expect(page_01.text).toBe(
+            'The quick brown fox jumped over the lazy dog. Then a pig flew by.'
+        )
     })
 
     it("Pencil degrades and sharpens properly", function(){
