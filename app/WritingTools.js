@@ -53,11 +53,9 @@ Pencil.prototype.degradeEraser = function(text) {
     for (var i = 0; i < text.length; i++) {
         var code = text.charCodeAt(i)
         if (code <= 122 && code >= 33){
-            // this assumes punctuation degradePoints by 1
             points++
         }
     }
-
     // less important for eraser, but ensure no negative degradation
     if (points > this.currentEraserDurability) {
       this.currentEraserDurability = 0

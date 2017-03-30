@@ -13,15 +13,24 @@ function Erase(paper, pencil, textToErase){
     indexOfTextToErase = paper.text.lastIndexOf(textToErase)
     if (indexOfTextToErase < 0) {return paper}
 
-
     var textArray = paper.text.split('') // make a mutable copy
-    for (var i = indexOfTextToErase; i < indexOfTextToErase + eraseLength; i++){
-        textArray[i] = ' '
-    }
-    // add edge case of zero, comparing currentEraserDurability
-    // to text length
-    pencil.degradeEraser(textToErase)
+    // console.log('starting text : ', paper.text);
 
-    paperCopy.text = textArray.join('')
-    return paperCopy
+    // console.log('textToErase', textToErase);
+    for (var i = indexOfTextToErase -1 + eraseLength; i >= indexOfTextToErase; i--){
+        // console.log('text, [i]', textArray[i]);
+        var code = textArray[i].charCodeAt(0)
+        if ((code <= 122 && code >= 33) && pencil.currentEraserDurability ){
+                pencil.currentEraserDurability--
+                textArray[i] = ' '
+        }
+    }
+
+    paper.text = textArray.join('')
+    // console.log('ending text: ', paper.text);
+    return paper
+}
+
+function InsertEdit(){
+
 }

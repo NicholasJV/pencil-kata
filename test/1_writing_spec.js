@@ -1,5 +1,5 @@
 
-describe("WRITING : ", function(){
+describe("Writing : ", function(){
 
     var pencil_01,
         pencil_02,
