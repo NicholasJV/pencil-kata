@@ -39,4 +39,17 @@ describe("Writing process test", function(){
     // TODO: test more complicated point degradation
     it("Writes ")
 
+
+    it("Erases a word correctly (the last instance of the word on the paper", function(){
+        // Erase(paper, pencil, textToErase)
+        Erase(page_02, pencil_02, 'wood')
+        expect(page_02.text).toBe(
+          'How much wood would a woodchuck chuck if a woodchuck could chuck     ?'
+        )
+        Erase(page_02, pencil_02, 'wood')
+        expect(page_02.text).toBe(
+          'How much wood would a woodchuck chuck if a     chuck could chuck     ?'
+        )
+    })
+
 })
