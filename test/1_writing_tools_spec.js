@@ -1,5 +1,5 @@
 
-describe("Writig tools test", function(){
+describe("Writing tools test", function(){
 
     var pencil_01,
         pencil_02,
@@ -7,6 +7,7 @@ describe("Writig tools test", function(){
         page_02
 
     beforeEach(function(){
+        // Pencil(point, eraser, length)
         pencil_01 = new Pencil(200, 300, 30)
         pencil_02 = new Pencil(500, 700, 40)
         // Paper(title, initial_text)

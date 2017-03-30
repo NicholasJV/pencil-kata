@@ -9,6 +9,7 @@ describe("Writing process test", function(){
     beforeEach(function(){
         pencil_01 = new Pencil(200, 300, 30)
         pencil_02 = new Pencil(500, 700, 40)
+        pencil_03_used = new Pencil(5, 100, 10)
         // Paper(title, initial_text)
         page_01 = new Paper('Page_01', '') // intentionally blank for testing
         page_02 = new Paper('Page_02',
@@ -17,10 +18,13 @@ describe("Writing process test", function(){
         page_03 = new Paper('Page_03', 'The quick brown fox')
     })
 
-    it("Writes to a clean sheet of paper correctly", function(){
+    it("Writes to a clean sheet of paper correctly with simple point degradation", function(){
         // Write(paper, pencil, newText)
         Write(page_01, pencil_01, 'I like to eat apples and bananas')
         expect(page_01.text).toBe('I like to eat apples and bananas')
+        expect(pencil_01.currentPointDurability).toBe( // hacky but will refactor later
+          200 - 'iiliketoeatapplesandbananas'.length
+        )
     })
 
     it("Writes to a piece of paper multiple times correctly", function(){
@@ -32,8 +36,7 @@ describe("Writing process test", function(){
         )
     })
 
-    // Add point degradation next
-    it("")
-
+    // TODO: test more complicated point degradation
+    it("Writes ")
 
 })
