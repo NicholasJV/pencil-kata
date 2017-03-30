@@ -17,7 +17,9 @@ To run tests:
 
 `npm test`
 
-This will launch chrome as the browser environment by default. It will automatically close when you stop the test process in terminal (and vice versa -- closing the browser will stop the test process). Stop the test process with `Ctrl-C`. Safari and Firefox launchers will also install by default; to specify which ones launch automatically, uncomment them in the `browsers` property of `karma.conf.js`
+This will launch Chrome as the browser environment by default. It will automatically close when you stop the test process in terminal (and vice versa -- closing the browser will stop the test process). `Ctrl-C` will stop the test process manually, but you probably guessed that.
+
+Safari and Firefox launchers will also install by default; to specify which ones launch automatically, uncomment them in the `browsers` property of `karma.conf.js`
 
 The tests will reload automatically on changes to the files. You can view the test output in the console, or use
 

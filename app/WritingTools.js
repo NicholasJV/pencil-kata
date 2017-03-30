@@ -10,12 +10,12 @@ function Pencil (pointDurability, eraserDurability, length) {
 }
 
 Pencil.prototype.sharpen = function() {
-    this.pointDurability = this.pointDurabilityRating
+    this.currentPointDurability = this.pointDurabilityRating
     // TODO: explore edge cases
     return this
 }
 
-Pencil.prototype.degrade = function(text) {
+Pencil.prototype.degradePoint = function(text) {
     var points = 0
     for (var i = 0; i < text.length; i++) {
         var code = text.charCodeAt(i)
@@ -25,16 +25,25 @@ Pencil.prototype.degrade = function(text) {
          *   91-122 lower lowercase letters
          *-------------------------------------*/
         if (code <= 122 && code >= 33){
-            // this assumes punctuation degrades by 1
+            // this assumes punctuation degradePoints by 1
             points++
             if (code <= 90 && code >= 65){
-                // uppercase degrades by 2
+                // uppercase degradePoints by 2
                 points++
             }
         }
     }
-    this.currentPointDurability -= points
+    // ensure no negative degradation
+    if (points > this.currentPointDurability) {
+      this.currentPointDurability = 0
+    } else {
+      this.currentPointDurability -= points
+    }
     return this
+}
+
+Pencil.prototype.degradeEraser = function(text) {
+    // TODO: add logic here
 }
 
 function Paper (title, initial_text){

@@ -1,7 +1,7 @@
 
 function Write(paper, pencil, newText){
     paper.text += newText
-    pencil.degrade(newText)
+    pencil.degradePoint(newText)
 }
 
 function Erase(paper, pencil, textToErase){
