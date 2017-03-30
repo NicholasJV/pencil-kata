@@ -25,16 +25,27 @@ module.exports = function(config) {
     ],
 
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
-
-
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec', 'html'],
+    reporters: ['spec', 'html', 'coverage'],
+
+
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {
+      // source files that you want generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      'app/*.js': ['coverage']
+    },
+
+    // optionally, configure the reporter
+    coverageReporter: {
+      type : 'html',
+      dir : 'test/coverage/'
+    },
+
 
     htmlReporter: {
       outputFile: 'test/karmaUnitTests.html'
@@ -63,8 +74,9 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: [
+      // uncomment to enable other browser launchers
+      // (these three are already installed by default):
       'Chrome',
-      // uncomment to enable other browser launchers already installed by default:
       // 'Firefox',
       // 'Safari',
     ],

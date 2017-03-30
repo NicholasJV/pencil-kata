@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "karma start karma.conf.js",
-    "browserTestOutput": "open ./test/karmaUnitTests.html"
+    "htmlKarma": "open ./test/karmaUnitTests.html",
+    "coverage": "open ./test/coverage/**/index.html"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "jasmine-core": "^2.5.2",
     "karma": "^1.5.0",
     "karma-chrome-launcher": "^2.0.0",
+    "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "^1.0.1",
     "karma-htmlfile-reporter": "^0.3.5",
     "karma-jasmine": "^1.1.0",

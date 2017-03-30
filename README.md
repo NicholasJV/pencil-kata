@@ -29,6 +29,12 @@ The tests will reload automatically on changes to the files. You can view the te
 
 The html file should be overwritten every file change, so just refresh the browser to see updated test output.
 
+Test coverage is automatically generated into an html report inside test/coverage/[subfolder], with a subfolder for each browser enabled. Use
+
+`npm run coverage`
+
+to automatically open the report(s).
+
 -----
 
 #### node notes:
