@@ -28,7 +28,7 @@ describe("Writig tools test", function(){
         // TODO: explore edge cases
     })
 
-    it("creates a paper with correct properties", function(){
+    it("creates a piece of paper with correct properties", function(){
         expect( page_01.title ).toEqual('Page_01')
         expect( page_01.text ).toEqual('The quick brown fox')
         expect( page_01.timestamp ).not.toBe(undefined)
