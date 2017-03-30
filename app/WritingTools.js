@@ -15,17 +15,18 @@ Pencil.prototype.sharpen = function() {
     return this
 }
 
+/*** ASCII reminder:
+ *   33-64 puncuation and numbers
+ *   65-90 uppercase letters
+ *   91-122 lower lowercase letters
+ *-------------------------------------*/
+
 Pencil.prototype.degradePoint = function(text) {
     var points = 0
     for (var i = 0; i < text.length; i++) {
         var code = text.charCodeAt(i)
-        /*** ASCII reminder:
-         *   33-64 puncuation and numbers
-         *   65-90 uppercase letters
-         *   91-122 lower lowercase letters
-         *-------------------------------------*/
+        // assumes punctuation are normal "characters" and degrade by 1
         if (code <= 122 && code >= 33){
-            // this assumes punctuation degradePoints by 1
             points++
             if (code <= 90 && code >= 65){
                 // uppercase degradePoints by 2
@@ -43,7 +44,22 @@ Pencil.prototype.degradePoint = function(text) {
 }
 
 Pencil.prototype.degradeEraser = function(text) {
-    // TODO: add logic here
+    var points = 0
+    for (var i = 0; i < text.length; i++) {
+        var code = text.charCodeAt(i)
+        if (code <= 122 && code >= 33){
+            // this assumes punctuation degradePoints by 1
+            points++
+        }
+    }
+
+    // less important for eraser, but ensure no negative degradation
+    if (points > this.currentEraserDurability) {
+      this.currentEraserDurability = 0
+    } else {
+      this.currentEraserDurability -= points
+    }
+    return this
 }
 
 function Paper (title, initial_text){

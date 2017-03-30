@@ -5,7 +5,9 @@ describe("EDITING PROCESS:", function(){
         page_02
 
     beforeEach(function(){
+        // Pencil(point, eraser, length)
         pencil_02 = new Pencil(500, 700, 40)
+        pencil_03_stubby_eraser = new Pencil(100, 10, 10)
         // Paper(title, initial_text)
         page_02 = new Paper('Page_02',
             'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
@@ -39,6 +41,14 @@ describe("EDITING PROCESS:", function(){
         )
     })
 
-    // TODO: eraser degrades properly
+    it("Eraser degrades properly without negative durability", function(){
+        Erase(page_02, pencil_02, 'chuck wood')
+        expect(pencil_02.currentEraserDurability).toBe(700 - 'chuckwood'.length)
+    })
+
+    xit("Eraser fully degrades and stops erasing at zero if told to continue", function(){
+
+    })
+
 
 })
