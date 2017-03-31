@@ -3,6 +3,7 @@ describe("Editing : ", function(){
 
     var pencil_01,
         pencil_02_stubby_eraser,
+        pencil_03_terrible_point,
         page_01,
         page_02
 
@@ -10,6 +11,7 @@ describe("Editing : ", function(){
         // Pencil(point, eraser, length)
         pencil_01 = new Pencil(500, 700, 40)
         pencil_02_stubby_eraser = new Pencil(100, 10, 10)
+        pencil_03_terrible_point = new Pencil(20, 100, 10)
         // Paper(title, initial_text)
         page_01 = new Paper('Page_01',
             'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
@@ -62,7 +64,7 @@ describe("Editing : ", function(){
 
     it("Adds an edit text into first whitespace properly", function(){
         // InsertEdit(paper, pencil, textToInsert)
-        InsertEdit(page_02, pencil_01, 'bananas would a gorilla')
+        InsertEdit(page_02, pencil_01, ' bananas would a gorilla')
         expect(page_02.text).toBe(
           'How much bananas would a gorillachuck if a     chuck could chuck     ?'
         )
@@ -70,7 +72,7 @@ describe("Editing : ", function(){
 
     it("Adds an edit text into first whitespace with overwriting subsequent text", function(){
         // InsertEdit(paper, pencil, textToInsert)
-        InsertEdit(page_02, pencil_01, 'bananas would a gorilla eat if... wait...')
+        InsertEdit(page_02, pencil_01, ' bananas would a gorilla eat if... wait...')
         expect(page_02.text).toBe(
           'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
         )

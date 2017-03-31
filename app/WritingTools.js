@@ -17,7 +17,7 @@ function Paper (title, initial_text){
 }
 
 Pencil.prototype.sharpen = function() {
-    // if (pencil.length <= 1) { pencil.dead = true; return this}
+    if (this.length === 0) { this.dead = true; return this}
     this.currentPointDurability = this.pointDurabilityRating
     this.length--
     return this

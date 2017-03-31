@@ -1,6 +1,6 @@
 
 function Write(paper, pencil, newText){
-    if(pencil.dead){ return }
+    if(pencil.dead){ return paper }
     var written = []
 
     for ( var i = 0; i < newText.length; i++ ){
@@ -8,11 +8,12 @@ function Write(paper, pencil, newText){
         var char = newText[i]
         pencil.degradePoint(char)
         written.push(char)
-        console.log(written.join(''))
-        console.log(pencil.currentPointDurability)
+        // console.log(written.join(''))
+        // console.log(pencil.currentPointDurability)
     }
 
     paper.text += written.join('')
+    return paper
 }
 
 function Erase(paper, pencil, textToErase){
@@ -39,26 +40,23 @@ function Erase(paper, pencil, textToErase){
 }
 
 function InsertEdit(paper, pencil, newEditText){
+    if (pencil.dead) {return paper}
     // Only check for triple whitespace to leave the option of
     // double whitespace as a sentence break.
-    var tripleWhite = paper.text.indexOf('   ')
-    if (tripleWhite < 0) { return paper }  // no sufficient whitespace found
-    var insertPoint = tripleWhite + 1
-    var written = []   // to keep track of text for point degradation
+    var insertPoint = paper.text.indexOf('   ')
+    if (insertPoint < 0) { return paper }  // no sufficient whitespace found
     var paperText = paper.text.split('')
     var editTextIndex = 0
 
     for ( var i = insertPoint; editTextIndex < newEditText.length; i++ ){
         if (pencil.currentPointDurability < 1) { break }
         var char = newEditText[editTextIndex]
-        if (paperText[i] === ' '){
+        if (paperText[i] === (' ' || null)){
             paperText[i] = char
             pencil.degradePoint(char)
-            // written.push(char)
         } else {
             paperText[i] = '@'
             pencil.degradePoint('@')
-            // written.push('@')
         }
         editTextIndex++
     }
