@@ -35,6 +35,12 @@ Test coverage is automatically generated into an html report inside test/coverag
 
 to automatically open the report(s).
 
+To start the tests in a debug mode:
+
+`npm run debug`
+
+This runs the tests as before but disables coverage so that the code is not minified and you can step through clearly.
+
 -----
 
 #### node notes:

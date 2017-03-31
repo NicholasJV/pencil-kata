@@ -1,5 +1,6 @@
 
 function Write(paper, pencil, newText){
+    if(pencil.dead){ return }
     paper.text += newText
     pencil.degradePoint(newText)
 }
@@ -13,49 +14,42 @@ function Erase(paper, pencil, textToErase){
     indexOfTextToErase = paper.text.lastIndexOf(textToErase)
     if (indexOfTextToErase < 0) {return paper}
 
-    var textArray = paper.text.split('') // make a mutable copy
+    var paperText = paper.text.split('') // make a mutable copy
 
     for (var i = indexOfTextToErase -1 + eraseLength; i >= indexOfTextToErase; i--){
-        var code = textArray[i].charCodeAt(0)
+        var code = paperText[i].charCodeAt(0)
         if ((code <= 122 && code >= 33) && pencil.currentEraserDurability ){
                 pencil.currentEraserDurability--
-                textArray[i] = ' '
+                paperText[i] = ' '
         }
     }
 
-    paper.text = textArray.join('')
+    paper.text = paperText.join('')
     return paper
 }
 
 function InsertEdit(paper, pencil, newEditText){
-
-    // We check for triple whitespace to leave the option of
+    // Only check for triple whitespace to leave the option of
     // double whitespace as a sentence break.
+    var tripleWhite = paper.text.indexOf('   ')
+    if (tripleWhite < 0) { return paper }  // no sufficient whitespace found
+    var insertPoint = tripleWhite + 1
+    var written = []   // to keep track of text for point degradation
+    var paperText = paper.text.split('')
+    var editTextIndex = 0
 
-    var insertPoint = paper.text.indexOf('   ')
-    if (insertPoint < 0) {
-        return paper
-    }
-
-    // logic below is basically correct, just have to figure out
-    // incrementing both original text string and editText together
-
-    /*
-
-    // find first triple whitespace
-    // if none, return paper unchanged
-
-    // start loop over at indexOf(tripleWhite + 1)
-
-    for ( var i = tripleWhite, j = 0; ; i++ ){
-        if (text[i] === ' '){
-               write character from newEditText[j]
+    for ( var i = insertPoint; editTextIndex < newEditText.length; i++ ){
+        if (paperText[i] === ' '){
+              paperText[i] = newEditText[editTextIndex]
+              written.push(newEditText[editTextIndex])
             } else {
-               write '@'
+              paperText[i] = '@'
+              written.push('@')
             }
-        j++
+        editTextIndex++
     }
 
-    */
-
+    paper.text = paperText.join('')
+    pencil.degradePoint(written.join(''))
+    return paper
 }

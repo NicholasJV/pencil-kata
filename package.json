@@ -6,7 +6,8 @@
   "scripts": {
     "test": "karma start karma.conf.js",
     "htmlKarma": "open ./test/karmaUnitTests.html",
-    "coverage": "open ./test/coverage/**/index.html"
+    "coverage": "open ./test/coverage/**/index.html",
+    "debug": "karma start --debug karma.conf.js"
   },
   "repository": {
     "type": "git",

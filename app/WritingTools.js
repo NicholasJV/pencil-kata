@@ -4,6 +4,7 @@ function Pencil (pointDurability, eraserDurability, length) {
     this.pointDurabilityRating = pointDurability
     this.eraserDurabilityRating = eraserDurability
     this.length = length
+    this.dead = false
     // mutable properties:
     this.currentPointDurability = pointDurability
     this.currentEraserDurability = eraserDurability
@@ -16,7 +17,9 @@ function Paper (title, initial_text){
 }
 
 Pencil.prototype.sharpen = function() {
+    // if (pencil.length <= 1) { pencil.dead = true; return this}
     this.currentPointDurability = this.pointDurabilityRating
+    this.length--
     return this
 }
 

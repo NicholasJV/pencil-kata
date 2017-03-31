@@ -58,6 +58,7 @@ describe("Writing : ", function(){
         expect( pencil_01.currentPointDurability ).toEqual(149)
         pencil_01.sharpen()
         expect( pencil_01.currentPointDurability ).toEqual(200)
+        expect( pencil_01.length ).toEqual(29)
     })
 
      it("Pencil degrades fully without negative durability, sharpens back", function(){

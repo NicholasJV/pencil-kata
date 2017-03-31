@@ -2,6 +2,15 @@
 // Generated on Tue Mar 28 2017 18:18:32 GMT-0400 (EDT)
 
 module.exports = function(config) {
+
+  var sourcePreprocessors = ['coverage'];
+  function isDebug(argument) {
+      return argument === '--debug';
+  }
+  if (process.argv.some(isDebug)) {
+      sourcePreprocessors = [];
+  }
+
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -37,15 +46,15 @@ module.exports = function(config) {
       // source files that you want generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
-      'app/*.js': ['coverage']
+      'app/*.js': sourcePreprocessors
     },
+
 
     // optionally, configure the reporter
     coverageReporter: {
       type : 'html',
       dir : 'test/coverage/'
     },
-
 
     htmlReporter: {
       outputFile: 'test/karmaUnitTests.html'

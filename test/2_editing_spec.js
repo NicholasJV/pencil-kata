@@ -60,25 +60,33 @@ describe("Editing : ", function(){
         )
     })
 
-    xit("Adds an edit text into first whitespace properly", function(){
+    it("Adds an edit text into first whitespace properly", function(){
         // InsertEdit(paper, pencil, textToInsert)
-        Insert(page_02, pencil_01, 'bananas would a gorilla')
-        expect(pag_02.text).toBe(
+        InsertEdit(page_02, pencil_01, 'bananas would a gorilla')
+        expect(page_02.text).toBe(
           'How much bananas would a gorillachuck if a     chuck could chuck     ?'
         )
     })
 
-  /*_____ Example edit to help visualize overwrite process: ___________________*\
+    it("Adds an edit text into first whitespace with overwriting subsequent text", function(){
+        // InsertEdit(paper, pencil, textToInsert)
+        InsertEdit(page_02, pencil_01, 'bananas would a gorilla eat if... wait...')
+        expect(page_02.text).toBe(
+          'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
+        )
+    })
+
+  /*_____ Example text edit to help visualize overwrite process: ______________*\
+   *
+   *  below is: starting text,
+   *            new text,
+   *            ending text,
+   *            text ultimately written after collisions are determined.
    *
    *   'How much                        chuck if a     chuck could chuck     ?'
    *            'bananas would a gorilla eat if... wait...'
    *   'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
+   *            'bananas would a gorilla@@@@@ @@.@ wait@@@'
   \*___________________________________________________________________________*/
-
-    xit("Adds an edit text into first whitespace with overwriting subsequent text", function(){
-        // InsertEdit(paper, pencil, textToInsert)
-        Insert(page_02, pencil_01, 'bananas would a gorilla eat if... wait...')
-        expect(pag_02.text).toBe('')
-    })
 
 })
