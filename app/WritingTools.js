@@ -29,19 +29,19 @@ Pencil.prototype.sharpen = function() {
  *   91-122 lower lowercase letters
  *-----------------------------------*/
 Pencil.prototype.degradePoint = function(text) {
+    // now only characters
+
     var points = 0
-    for (var i = 0; i < text.length; i++) {
-        var code = text.charCodeAt(i)
-        // assumes punctuation are normal "characters" and degrade by 1
-        if (code <= 122 && code >= 33){
+    var code = text.charCodeAt()
+    // assumes punctuation are normal "characters" and degrade by 1
+    if (code <= 122 && code >= 33){
+        points++
+        if (code <= 90 && code >= 65){
+            // uppercase degradePoints by 2
             points++
-            if (code <= 90 && code >= 65){
-                // uppercase degradePoints by 2
-                points++
-            }
         }
     }
-    // ensure no negative degradation
+
     if (points > this.currentPointDurability) {
       this.currentPointDurability = 0
     } else {

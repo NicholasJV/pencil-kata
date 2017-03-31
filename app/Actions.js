@@ -1,8 +1,18 @@
 
 function Write(paper, pencil, newText){
     if(pencil.dead){ return }
-    paper.text += newText
-    pencil.degradePoint(newText)
+    var written = []
+
+    for ( var i = 0; i < newText.length; i++ ){
+        if (!pencil.currentPointDurability) { break }
+        var char = newText[i]
+        pencil.degradePoint(char)
+        written.push(char)
+        console.log(written.join(''))
+        console.log(pencil.currentPointDurability)
+    }
+
+    paper.text += written.join('')
 }
 
 function Erase(paper, pencil, textToErase){
@@ -39,17 +49,20 @@ function InsertEdit(paper, pencil, newEditText){
     var editTextIndex = 0
 
     for ( var i = insertPoint; editTextIndex < newEditText.length; i++ ){
+        if (pencil.currentPointDurability < 1) { break }
+        var char = newEditText[editTextIndex]
         if (paperText[i] === ' '){
-              paperText[i] = newEditText[editTextIndex]
-              written.push(newEditText[editTextIndex])
-            } else {
-              paperText[i] = '@'
-              written.push('@')
-            }
+            paperText[i] = char
+            pencil.degradePoint(char)
+            // written.push(char)
+        } else {
+            paperText[i] = '@'
+            pencil.degradePoint('@')
+            // written.push('@')
+        }
         editTextIndex++
     }
 
     paper.text = paperText.join('')
-    pencil.degradePoint(written.join(''))
     return paper
 }

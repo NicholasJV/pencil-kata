@@ -68,4 +68,13 @@ describe("Writing : ", function(){
         expect( pencil_03_terrible_durability.pointDurabilityRating ).toEqual(20)
      })
 
+     it("Pencil won't write if point is spent", function(){
+        Write(page_03, pencil_03_terrible_durability,
+            'Lowercaselettersshoulddegradethepencilpointbyavalueofone,\
+            andcapitallettersshoulddegradethepointbytwo.'
+        )
+        expect( pencil_03_terrible_durability.currentPointDurability ).toEqual(0)
+        expect( page_03.text ).toBe('Lowercaseletterssho')
+     })
+
 })
