@@ -14,6 +14,7 @@ describe("Editing : ", function(){
         page_01 = new Paper('Page_01',
             'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
         )
+        // blank space for editing tests
         page_02 = new Paper('Page_02',
             'How much                        chuck if a     chuck could chuck     ?'
         )
@@ -61,7 +62,23 @@ describe("Editing : ", function(){
 
     xit("Adds an edit text into first whitespace properly", function(){
         // InsertEdit(paper, pencil, textToInsert)
-        
+        Insert(page_02, pencil_01, 'bananas would a gorilla')
+        expect(pag_02.text).toBe(
+          'How much bananas would a gorillachuck if a     chuck could chuck     ?'
+        )
+    })
+
+  /*_____ Example edit to help visualize overwrite process: ___________________*\
+   *
+   *   'How much                        chuck if a     chuck could chuck     ?'
+   *            'bananas would a gorilla eat if... wait...'
+   *   'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
+  \*___________________________________________________________________________*/
+
+    xit("Adds an edit text into first whitespace with overwriting subsequent text", function(){
+        // InsertEdit(paper, pencil, textToInsert)
+        Insert(page_02, pencil_01, 'bananas would a gorilla eat if... wait...')
+        expect(pag_02.text).toBe('')
     })
 
 })
