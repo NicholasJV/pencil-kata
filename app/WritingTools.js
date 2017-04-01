@@ -11,7 +11,7 @@ function Pencil (pointDurability, eraserDurability, length) {
     this.length = length
     this.dead = false
     // mutable properties:
-    this.currentPointDurability = pointDurability
+    this.currentPointDurability = pointDurability // rename to "sharpness"
     this.currentEraserDurability = eraserDurability
 }
 
