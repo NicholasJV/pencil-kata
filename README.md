@@ -13,7 +13,7 @@ Clone and install from your chosen parent directory:
 
 `npm install`
 
-(Note: I used [yarn](https://yarnpkg.com/en/), a great alternative to npm that uses the same npm registry but uses a more deterministic install process -- that's why there is a `yarn.lock` file in the project.)
+(Note: I used [yarn](https://yarnpkg.com/en/), a great alternative to npm that uses the same npm registry but uses a more deterministic install process -- that's why there is a `yarn.lock` file in the project. The equivalent to `npm install` is simply `yarn`)
 
 To run tests:
 
