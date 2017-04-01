@@ -1,7 +1,7 @@
 ## Pencil Kata
-#### is a TDD exercise
+#### TDD exercise
 
-You need [node.js](https://nodejs.org/en/) installed to run this. There are many ways to do this, but you can use Homebrew on OSX.
+You need [node](https://nodejs.org/en/) installed to run this. There are many ways to do this, but you can use Homebrew on OSX.
 See node notes below for some more info.
 
 -----
