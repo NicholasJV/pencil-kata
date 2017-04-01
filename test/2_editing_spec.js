@@ -13,6 +13,8 @@ describe("Editing : ", function(){
         pencil_02_stubby_eraser = new Pencil(100, 10, 10)
         pencil_03_terrible_point = new Pencil(20, 100, 10)
         // Paper(title, initial_text)
+
+// start tests with blank pages and only use write method to initialize
         page_01 = new Paper('Page_01',
             'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
         )
@@ -61,7 +63,32 @@ describe("Editing : ", function(){
             'How much wood would a woodchuck chuck if a woodchuck coul            ?'
         )
     })
+})
 
+
+describe("Insert Edit : ", function(){
+
+    var pencil_01,
+        pencil_02_stubby_eraser,
+        pencil_03_terrible_point,
+        page_01,
+        page_02
+
+    beforeEach(function(){
+        // Pencil(point, eraser, length)
+        pencil_01 = new Pencil(500, 700, 40)
+        pencil_02_stubby_eraser = new Pencil(100, 10, 10)
+        pencil_03_terrible_point = new Pencil(20, 100, 10)
+        // Paper(title, initial_text)
+// start tests with blank pages and only use write method to initialize
+        page_01 = new Paper('Page_01',
+            'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
+        )
+        // Blank page for editing tests
+        page_02 = new Paper('Page_02',
+            'How much                        chuck if a     chuck could chuck     ?'
+        )
+    })
     it("Adds an edit text into first whitespace properly", function(){
         // InsertEdit(paper, pencil, textToInsert)
         InsertEdit(page_02, pencil_01, ' bananas would a gorilla')

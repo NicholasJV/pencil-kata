@@ -26,6 +26,8 @@ Pencil.prototype.sharpen = function() {
 Pencil.prototype.degradePoint = function(text) {
     var points = 0
     var code = text.charCodeAt()
+
+// make this more readable
     // assumes punctuation are also equivalent to lowercase nd degrade by 1
     if (code <= 122 && code >= 33){
         points++

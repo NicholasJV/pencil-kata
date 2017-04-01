@@ -1,4 +1,8 @@
 
+// Attach these functions to a Writer class that takes context data
+// and returns the mutated data in the same structure
+// More functional style enables method chaining
+
 function Write(paper, pencil, newText){
     if(pencil.dead){ return paper }
     var written = []
@@ -15,7 +19,7 @@ function Write(paper, pencil, newText){
 }
 
 function Erase(paper, pencil, textToErase){
-    if(!pencil.currentEraserDurability) { return paper }
+    if (!pencil.currentEraserDurability) { return paper }
     var eraseLength = textToErase.length
     var paperText = paper.text.split('') // make a mutable copy
     indexOfTextToErase = paper.text.lastIndexOf(textToErase)

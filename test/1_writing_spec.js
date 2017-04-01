@@ -15,6 +15,7 @@ describe("Writing : ", function(){
         pencil_02 = new Pencil(500, 700, 40)
         pencil_03_terrible_durability = new Pencil(20, 100, 10)
         // Paper(title, initial_text)
+// simplify pages, only use blank pages?
         page_01 = new Paper('Page_01', 'The quick brown fox')
         page_02 = new Paper('Page_02', '...jumped over the lazy dog.')
         page_03 = new Paper('Page_03', '') // intentionally blank for testing
@@ -27,6 +28,8 @@ describe("Writing : ", function(){
     })
 
     it("Creates a piece of paper with correct properties", function(){
+// sloppy tests
+// maybe don't need title
         expect( page_01.title ).toEqual('Page_01')
         expect( page_01.text ).toEqual('The quick brown fox')
         expect( page_01.timestamp ).not.toBe(undefined)
@@ -37,9 +40,11 @@ describe("Writing : ", function(){
 
     it("Writes to a clean sheet of paper correctly with simple point degradation", function(){
         // Write(paper, pencil, newText)
+// capture start durability directly
         Write(page_03, pencil_01, 'I like to eat apples and bananas')
         expect(page_03.text).toBe('I like to eat apples and bananas')
         expect(pencil_01.currentPointDurability).toBe( // hacky but will refactor later
+// then instead of "magic number 200", use point durability directly to improve readability
           200 - 'iiliketoeatapplesandbananas'.length
         )
     })
@@ -51,6 +56,30 @@ describe("Writing : ", function(){
         expect(page_01.text).toBe(
             'The quick brown fox jumped over the lazy dog. Then a pig flew by.'
         )
+    })
+
+})
+
+describe("Durability : ", function(){
+
+    var pencil_01,
+        pencil_02,
+        page_01,
+        page_02,
+        page_03,
+        textDegrade25 = 'XXXXX XXXXX xxxxx'
+        textDegrade51 = 'XXXXX XXXXX XXXXX XXXXX 1@3$5%7^9) x'
+
+    beforeEach(function(){
+        // Pencil(point, eraser, length)
+        pencil_01 = new Pencil(200, 300, 30)
+        pencil_02 = new Pencil(500, 700, 40)
+        pencil_03_terrible_durability = new Pencil(20, 100, 10)
+        // Paper(title, initial_text)
+// simplify pages, only use blank pages?
+        page_01 = new Paper('Page_01', 'The quick brown fox')
+        page_02 = new Paper('Page_02', '...jumped over the lazy dog.')
+        page_03 = new Paper('Page_03', '') // intentionally blank for testing
     })
 
     it("Pencil degrades and sharpens properly", function(){
@@ -70,8 +99,7 @@ describe("Writing : ", function(){
 
      it("Pencil won't write if point is spent", function(){
         Write(page_03, pencil_03_terrible_durability,
-            'Lowercaselettersshoulddegradethepencilpointbyavalueofone,\
-            andcapitallettersshoulddegradethepointbytwo.'
+            'Lowercaselettersshoulddegradethepencilpointbyavalueofone'
         )
         expect( pencil_03_terrible_durability.currentPointDurability ).toEqual(0)
         expect( page_03.text ).toBe('Lowercaseletterssho')
