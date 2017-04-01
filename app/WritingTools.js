@@ -23,17 +23,10 @@ Pencil.prototype.sharpen = function() {
     return this
 }
 
-/*** ASCII reminder:   --------------*|
- *   33-64 puncuation and numbers
- *   65-90 uppercase letters
- *   91-122 lower lowercase letters
- *-----------------------------------*/
 Pencil.prototype.degradePoint = function(text) {
-    // now only characters
-
     var points = 0
     var code = text.charCodeAt()
-    // assumes punctuation are normal "characters" and degrade by 1
+    // assumes punctuation are also equivalent to lowercase nd degrade by 1
     if (code <= 122 && code >= 33){
         points++
         if (code <= 90 && code >= 65){
@@ -50,4 +43,8 @@ Pencil.prototype.degradePoint = function(text) {
     return this
 }
 
-// move eraser degrading logic to Erase function
+/*** ASCII reminder:   --------------*|
+ *   33-64 puncuation and numbers
+ *   65-90 uppercase letters
+ *   91-122 lower lowercase letters
+ *-----------------------------------*/

@@ -1,7 +1,6 @@
 
 describe("Combined Actions : ", function(){
 
-
     var pencilOnLifeSupport,
         page_01
 
@@ -12,19 +11,18 @@ describe("Combined Actions : ", function(){
 
     it("It writes, erases, sharpens and edits, together with proper point, eraser degradadation", function(){
         Write(page_01, pencilOnLifeSupport, " plus 5")
-        // console.log(page_01.text);
         expect(pencilOnLifeSupport.currentPointDurability).toBe(7)
         Erase(page_01, pencilOnLifeSupport, 'Characters')
-        // console.log(page_01.text);
         expect(page_01.text).toBe("This Text is 22 Chara      plus 5")
         pencilOnLifeSupport.sharpen()
         InsertEdit(page_01, pencilOnLifeSupport,       'cters plus 5 and another some')
         expect(page_01.text).toBe("This Text is 22 Characters @@@@ @")
         pencilOnLifeSupport.sharpen()
         Write(page_01, pencilOnLifeSupport, " I'm dying...")
-        pencilOnLifeSupport.sharpen()
-        // now should be dead:
+        pencilOnLifeSupport.sharpen() // should not work
+        // now should be dead and won't write this part:
         Write(page_01, pencilOnLifeSupport, "Mr. Text? Haven't heard that name in years")
+        expect(page_01.text).toBe("This Text is 22 Characters @@@@ @ I'm dying...")
     })
 
 })

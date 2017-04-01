@@ -16,20 +16,20 @@ describe("Editing : ", function(){
         page_01 = new Paper('Page_01',
             'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
         )
-        // blank space for editing tests
+        // Blank page for editing tests
         page_02 = new Paper('Page_02',
             'How much                        chuck if a     chuck could chuck     ?'
         )
     })
 
     it("Erases a word or phrase correctly \
-        (the last instance of the word on the paper)", function(){
+    (the last instance of the word on the paper)", function(){
         // Erase(paper, pencil, textToErase)
         Erase(page_01, pencil_01, 'wood')
         expect(page_01.text).toBe(
           'How much wood would a woodchuck chuck if a woodchuck could chuck     ?'
         )
-        // check cases with leading/tralling space, should perform same
+        // Check cases with leading/tralling space, should perform same
         Erase(page_01, pencil_01, ' wood')
         expect(page_01.text).toBe(
           'How much wood would a woodchuck chuck if a     chuck could chuck     ?'
@@ -80,15 +80,17 @@ describe("Editing : ", function(){
 
   /*_____ Example text edit to help visualize overwrite process: ______________*\
    *
-   *  below is: starting text,
-   *            new text,
-   *            ending text,
-   *            text ultimately written after collisions are determined.
+   *  below is: 1. starting text,
+   *            2. erased text,
+   *            3. new text,
+   *            4. ending text,
+   *            5. text ultimately written after collisions are determined.
    *
-   *   'How much                        chuck if a     chuck could chuck     ?'
-   *            'bananas would a gorilla eat if... wait...'
-   *   'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
-   *            'bananas would a gorilla@@@@@ @@.@ wait@@@'
+   * 1. 'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
+   * 2. 'How much                        chuck if a     chuck could chuck     ?'
+   * 3.          'bananas would a gorilla eat if... wait...'
+   * 4. 'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
+   * 5.          'bananas would a gorilla@@@@@ @@.@ wait@@@'
   \*___________________________________________________________________________*/
 
 })

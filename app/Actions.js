@@ -16,18 +16,18 @@ function Write(paper, pencil, newText){
 
 function Erase(paper, pencil, textToErase){
     if(!pencil.currentEraserDurability) { return paper }
-        var eraseLength = textToErase.length
-        var paperText = paper.text.split('') // make a mutable copy
-        indexOfTextToErase = paper.text.lastIndexOf(textToErase)
-        if (indexOfTextToErase < 0) {return paper}
+    var eraseLength = textToErase.length
+    var paperText = paper.text.split('') // make a mutable copy
+    indexOfTextToErase = paper.text.lastIndexOf(textToErase)
+    if (indexOfTextToErase < 0) {return paper}
 
-        for (var i = indexOfTextToErase -1 + eraseLength; i >= indexOfTextToErase; i--){
-            var code = paperText[i].charCodeAt(0)
-            if ((code <= 122 && code >= 33) && pencil.currentEraserDurability ){
-                    pencil.currentEraserDurability--
-                    paperText[i] = ' '
-            }
+    for (var i = indexOfTextToErase -1 + eraseLength; i >= indexOfTextToErase; i--){
+        var code = paperText[i].charCodeAt(0)
+        if ((code <= 122 && code >= 33) && pencil.currentEraserDurability ){
+                pencil.currentEraserDurability--
+                paperText[i] = ' '
         }
+    }
 
     paper.text = paperText.join('')
     return paper
@@ -38,7 +38,7 @@ function InsertEdit(paper, pencil, newEditText){
     // Only check for triple whitespace to leave the option of
     // double whitespace as a sentence break.
     var insertPoint = paper.text.indexOf('   ')
-    if (insertPoint < 0) { return paper }  // no sufficient whitespace found
+    if (insertPoint < 0) { return paper }
     var paperText = paper.text.split('')
     var editTextIndex = 0
 
@@ -50,7 +50,6 @@ function InsertEdit(paper, pencil, newEditText){
             paperText[i] = char
             pencil.degradePoint(char)
         } else {
-            // console.log('paper text', paperText.join(''));
             paperText[i] = '@'
             pencil.degradePoint('@')
         }
