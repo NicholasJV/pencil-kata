@@ -19,7 +19,7 @@ describe("Combined Actions : ", function(){
         expect(page_01.text).toBe("This Text is 22 Chara      plus 5")
         pencilOnLifeSupport.sharpen()
         InsertEdit(page_01, pencilOnLifeSupport,       'cters plus 5 and another some')
-        expect(page_01.text).toBe("This Text is 22 Characters @@@@ @ a")
+        expect(page_01.text).toBe("This Text is 22 Characters @@@@ @")
         pencilOnLifeSupport.sharpen()
         Write(page_01, pencilOnLifeSupport, " I'm dying...")
         pencilOnLifeSupport.sharpen()
