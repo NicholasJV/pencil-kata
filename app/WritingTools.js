@@ -1,4 +1,9 @@
 
+function Paper (initial_text){
+    this.text = initial_text
+    this.timestamp = Date.now()
+}
+
 function Pencil (pointDurability, eraserDurability, length) {
     // initial properties:
     this.pointDurabilityRating = pointDurability
@@ -8,12 +13,6 @@ function Pencil (pointDurability, eraserDurability, length) {
     // mutable properties:
     this.currentPointDurability = pointDurability
     this.currentEraserDurability = eraserDurability
-}
-
-function Paper (title, initial_text){
-    this.title = title
-    this.text = initial_text
-    this.timestamp = Date.now()
 }
 
 Pencil.prototype.sharpen = function() {

@@ -16,9 +16,9 @@ describe("Writing : ", function(){
         pencil_03_terrible_durability = new Pencil(20, 100, 10)
         // Paper(title, initial_text)
 // simplify pages, only use blank pages?
-        page_01 = new Paper('Page_01', 'The quick brown fox')
-        page_02 = new Paper('Page_02', '...jumped over the lazy dog.')
-        page_03 = new Paper('Page_03', '') // intentionally blank for testing
+        page_01 = new Paper('The quick brown fox')
+        page_02 = new Paper('...jumped over the lazy dog.')
+        page_03 = new Paper('') // intentionally blank for testing
     })
 
     it("Creates a pencil with correct properties", function(){
@@ -30,7 +30,6 @@ describe("Writing : ", function(){
     it("Creates a piece of paper with correct properties", function(){
 // sloppy tests
 // maybe don't need title
-        expect( page_01.title ).toEqual('Page_01')
         expect( page_01.text ).toEqual('The quick brown fox')
         expect( page_01.timestamp ).not.toBe(undefined)
         expect( page_02.text ).toEqual('...jumped over the lazy dog.')
@@ -77,9 +76,9 @@ describe("Durability : ", function(){
         pencil_03_terrible_durability = new Pencil(20, 100, 10)
         // Paper(title, initial_text)
 // simplify pages, only use blank pages?
-        page_01 = new Paper('Page_01', 'The quick brown fox')
-        page_02 = new Paper('Page_02', '...jumped over the lazy dog.')
-        page_03 = new Paper('Page_03', '') // intentionally blank for testing
+        page_01 = new Paper('The quick brown fox')
+        page_02 = new Paper('...jumped over the lazy dog.')
+        page_03 = new Paper('') // intentionally blank for testing
     })
 
     it("Pencil degrades and sharpens properly", function(){

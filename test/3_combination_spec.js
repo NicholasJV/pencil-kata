@@ -6,7 +6,7 @@ describe("Combined Actions : ", function(){
 
     beforeEach(function(){
         pencilOnLifeSupport = new Pencil(12, 5, 2)
-        page_01 = new Paper("Page_01", "This Text is 22 Characters")
+        page_01 = new Paper("This Text is 22 Characters")
     })
 
     it("It writes, erases, sharpens and edits, together with proper point, eraser degradation", function(){
