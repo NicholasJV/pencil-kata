@@ -4,7 +4,7 @@
 // More functional style enables method chaining
 
 function Write(paper, pencil, newText){
-    if(pencil.dead){ return paper }
+    if (pencil.isDead()){ return paper }
     var written = []
 
     for ( var i = 0; i < newText.length; i++ ){
@@ -42,7 +42,7 @@ function InsertEdit(paper, pencil, newEditText){
      * Only check for triple whitespace to leave the option of
      *   double whitespace as a sentence break.
      */
-    if (pencil.dead) {return paper}
+    if (pencil.isDead()) {return paper}
     var insertPoint = paper.text.indexOf('   ')
     if (insertPoint < 0) { return paper }
     var paperText = paper.text.split('')

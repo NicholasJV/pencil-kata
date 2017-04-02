@@ -13,8 +13,12 @@ function Pencil (point_durability, eraser_durability, length) {
     this.currentEraserDurability = eraser_durability
 }
 
+Pencil.prototype.isDead = function() {
+  !this.length
+}
+
 Pencil.prototype.sharpen = function() {
-    if (this.length === 0) { this.dead = true; return this}
+    if (this.length === 0) { return this }
     this.sharpness = this.pointDurabilityRating
     this.length--
     return this
