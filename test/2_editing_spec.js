@@ -1,106 +1,94 @@
 
-describe("Editing : ", function(){
+describe("Erasing: ", function(){
 
-    var pencil_01,
-        pencil_02_stubby_eraser,
-        pencil_03_terrible_point,
+    var strong_pencil,
+        weak_pencil,
+        test_page,
         page_01,
         page_02
 
     beforeEach(function(){
-        // Pencil(point, eraser, length)
-        pencil_01 = new Pencil(500, 700, 40)
-        pencil_02_stubby_eraser = new Pencil(100, 10, 10)
-        pencil_03_terrible_point = new Pencil(20, 100, 10)
-        // Paper(title, initial_text)
-
-// start tests with blank pages and only use write method to initialize
-        page_01 = new Paper(
+        /*   Pencil(point, eraser, length)   */
+        strong_pencil = new Pencil(500, 700, 40)
+        weak_pencil = new Pencil(20, 10, 10)
+        test_page = new Paper('')
+        woodchuck_test_phrase =
             'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
+        Write(test_page, strong_pencil, woodchuck_test_phrase)
+    })
+
+    it("Erases a word or phrase correctly (the last instance of the word on the paper)",
+    function(){
+        // Erase(paper, pencil, textToErase)
+        Erase(test_page, strong_pencil, 'wood')
+        expect(test_page.text).toBe(
+            'How much wood would a woodchuck chuck if a woodchuck could chuck     ?'
         )
-        // Blank page for editing tests
-        page_02 = new Paper(
+        /*   Check cases with leading/tralling space, should perform same   */
+        Erase(test_page, strong_pencil, ' wood')
+        expect(test_page.text).toBe(
+            'How much wood would a woodchuck chuck if a     chuck could chuck     ?'
+        )
+        Erase(test_page, strong_pencil, ' wood would a woodchuck ')
+        expect(test_page.text).toEqual(
             'How much                        chuck if a     chuck could chuck     ?'
         )
     })
 
-    it("Erases a word or phrase correctly \
-    (the last instance of the word on the paper)", function(){
-        // Erase(paper, pencil, textToErase)
-        Erase(page_01, pencil_01, 'wood')
-        expect(page_01.text).toBe(
-          'How much wood would a woodchuck chuck if a woodchuck could chuck     ?'
-        )
-        // Check cases with leading/tralling space, should perform same
-        Erase(page_01, pencil_01, ' wood')
-        expect(page_01.text).toBe(
-          'How much wood would a woodchuck chuck if a     chuck could chuck     ?'
-        )
-        Erase(page_01, pencil_01, ' wood would a woodchuck ')
-        expect(page_01.text).toEqual(page_02.text)
-    })
-
     it("Erases nothing if phrase is not found, even on close edge cases", function(){
-        Erase(page_01, pencil_01, 'woods')
-        Erase(page_01, pencil_01, 'dwood')
-        Erase(page_01, pencil_01, 'woob')
-        Erase(page_01, pencil_01, 'tood')
-        expect(page_01.text).toBe(
+        Erase(test_page, strong_pencil, 'woods')
+        Erase(test_page, strong_pencil, 'dwood')
+        Erase(test_page, strong_pencil, 'woo ')
+        Erase(test_page, strong_pencil, ' ood')
+        expect(test_page.text).toBe(
             'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
         )
     })
 
     it("Eraser degrades properly without negative durability", function(){
-        Erase(page_01, pencil_01, 'chuck wood')
-        expect(pencil_01.currentEraserDurability).toBe(700 - 'chuckwood'.length)
-        Erase(page_01, pencil_02_stubby_eraser, 'would a woodchuck chuck')
-        expect(pencil_02_stubby_eraser.currentEraserDurability).toBe(0)
+        var rating = strong_pencil.eraserDurabilityRating
+        Erase(test_page, strong_pencil, 'chuck wood')
+        expect(strong_pencil.currentEraserDurability).toBe(rating - 'chuckwood'.length)
+        Erase(test_page, weak_pencil, 'would a woodchuck chuck')
+        expect(weak_pencil.currentEraserDurability).toBe(0)
     })
 
     it("Erases backwards, stops erasing at zero even if told to continue", function(){
-        Erase(page_01, pencil_02_stubby_eraser, 'chuck if a woodchuck could chuck wood')
-        expect(page_01.text).toBe(
+        Erase(test_page, weak_pencil, 'chuck if a woodchuck could chuck wood')
+        expect(test_page.text).toBe(
             'How much wood would a woodchuck chuck if a woodchuck coul            ?'
         )
     })
 })
 
 
-describe("Insert Edit : ", function(){
+describe("Insert Editing : ", function(){
 
-    var pencil_01,
-        pencil_02_stubby_eraser,
-        pencil_03_terrible_point,
-        page_01,
-        page_02
+    var strong_pencil,
+        weak_pencil,
+        erased_page
 
     beforeEach(function(){
         // Pencil(point, eraser, length)
-        pencil_01 = new Pencil(500, 700, 40)
-        pencil_02_stubby_eraser = new Pencil(100, 10, 10)
-        pencil_03_terrible_point = new Pencil(20, 100, 10)
+        strong_pencil = new Pencil(500, 700, 40)
+        weak_pencil = new Pencil(20, 10, 10)
         // Paper(title, initial_text)
-// start tests with blank pages and only use write method to initialize
-        page_01 = new Paper(
-            'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
-        )
-        // Blank page for editing tests
-        page_02 = new Paper(
+        erased_page = new Paper(
             'How much                        chuck if a     chuck could chuck     ?'
         )
     })
-    it("Adds an edit text into first whitespace properly", function(){
+    it("Adds an edit text into first whitespace (longer than two) properly", function(){
         // InsertEdit(paper, pencil, textToInsert)
-        InsertEdit(page_02, pencil_01, ' bananas would a gorilla')
-        expect(page_02.text).toBe(
+        InsertEdit(erased_page, strong_pencil, ' bananas would a gorilla')
+        expect(erased_page.text).toBe(
           'How much bananas would a gorillachuck if a     chuck could chuck     ?'
         )
     })
 
     it("Adds an edit text into first whitespace with overwriting subsequent text", function(){
         // InsertEdit(paper, pencil, textToInsert)
-        InsertEdit(page_02, pencil_01, ' bananas would a gorilla eat if... wait...')
-        expect(page_02.text).toBe(
+        InsertEdit(erased_page, strong_pencil, ' bananas would a gorilla eat if... wait...')
+        expect(erased_page.text).toBe(
           'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
         )
     })

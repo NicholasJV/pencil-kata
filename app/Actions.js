@@ -38,9 +38,11 @@ function Erase(paper, pencil, textToErase){
 }
 
 function InsertEdit(paper, pencil, newEditText){
+    /**
+     * Only check for triple whitespace to leave the option of
+     *   double whitespace as a sentence break.
+     */
     if (pencil.dead) {return paper}
-    // Only check for triple whitespace to leave the option of
-    // double whitespace as a sentence break.
     var insertPoint = paper.text.indexOf('   ')
     if (insertPoint < 0) { return paper }
     var paperText = paper.text.split('')
