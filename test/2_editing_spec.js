@@ -48,9 +48,9 @@ describe("Erasing: ", function(){
     it("Eraser degrades properly without negative durability", function(){
         var rating = strong_pencil.eraserDurabilityRating
         Erase(test_page, strong_pencil, 'chuck wood')
-        expect(strong_pencil.currentEraserDurability).toBe(rating - 'chuckwood'.length)
+        expect(strong_pencil.eraserStrength).toBe(rating - 'chuckwood'.length)
         Erase(test_page, weak_pencil, 'would a woodchuck chuck')
-        expect(weak_pencil.currentEraserDurability).toBe(0)
+        expect(weak_pencil.eraserStrength).toBe(0)
     })
 
     it("Erases backwards, stops erasing at zero even if told to continue", function(){
