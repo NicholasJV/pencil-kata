@@ -43,8 +43,8 @@ describe("Writing : ", function(){
 
 describe("Durability : ", function(){
 
-    var no_2_pencil,
-        strong_pencil,
+    var strong_pencil,
+        no_2_pencil,
         textDegrade25 = 'XXXXX XXXXX xxxxx'
         textDegrade51 = 'XXXXX XXXXX XXXXX XXXXX 1@3$5%7^9) x'
 
