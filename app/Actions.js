@@ -8,7 +8,7 @@ function Write(paper, pencil, newText){
     var written = []
 
     for ( var i = 0; i < newText.length; i++ ){
-        if (!pencil.currentPointDurability) { break }
+        if (!pencil.sharpness) { break }
         var char = newText[i]
         pencil.degradePoint(char)
         written.push(char)
@@ -50,7 +50,7 @@ function InsertEdit(paper, pencil, newEditText){
 
     for ( var i = insertPoint; editTextIndex < newEditText.length; i++ ){
         if (i > paperText.length - 1) { break; }
-        if (pencil.currentPointDurability < 1) { break }
+        if (pencil.sharpness < 1) { break }
         var char = newEditText[editTextIndex]
         if (paperText[i] === ' '){
             paperText[i] = char

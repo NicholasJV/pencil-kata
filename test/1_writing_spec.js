@@ -25,7 +25,7 @@ describe("Writing : ", function(){
         /*   Write( paper, pencil, newText )   */
         Write(test_page, no_2_pencil, 'I like to eat apples and bananas')
         expect(test_page.text).toBe('I like to eat apples and bananas')
-        expect(no_2_pencil.currentPointDurability).toBe( // hacky but will refactor later
+        expect(no_2_pencil.sharpness).toBe( // hacky but will refactor later
           rating - 'iiliketoeatapplesandbananas'.length
         )
     })
@@ -60,16 +60,16 @@ describe("Durability : ", function(){
         var ogLength = strong_pencil.length
 
         Write(test_page, strong_pencil, textDegrade51)
-        expect( strong_pencil.currentPointDurability ).toEqual(rating - 51)
+        expect( strong_pencil.sharpness ).toEqual(rating - 51)
 
         strong_pencil.sharpen()
-        expect( strong_pencil.currentPointDurability ).toEqual(rating)
+        expect( strong_pencil.sharpness ).toEqual(rating)
         expect( strong_pencil.length ).toEqual(ogLength - 1)
     })
 
      it("Pencil degrades fully without negative durability, sharpens back", function(){
         Write(test_page, weak_pencil, textDegrade25)
-        expect( weak_pencil.currentPointDurability ).toEqual(0)
+        expect( weak_pencil.sharpness ).toEqual(0)
 
         weak_pencil.sharpen()
         expect( weak_pencil.pointDurabilityRating ).toEqual(20)
@@ -79,7 +79,7 @@ describe("Durability : ", function(){
         Write(test_page, weak_pencil,
             'Lowercaselettersshoulddegradethepencilpointbyavalueofone'
         )
-        expect( weak_pencil.currentPointDurability ).toEqual(0)
+        expect( weak_pencil.sharpness ).toEqual(0)
         expect( test_page.text ).toBe('Lowercaseletterssho')
      })
 

@@ -11,7 +11,7 @@ describe("Combined Actions : ", function(){
 
     it("It writes, erases, sharpens and edits, together with proper point, eraser degradation", function(){
         Write(test_page, pencil_on_life_support, " plus 5")
-        expect(pencil_on_life_support.currentPointDurability).toBe(7)
+        expect(pencil_on_life_support.sharpness).toBe(7)
 
         Erase(test_page, pencil_on_life_support, 'Characters')
         expect(test_page.text).toBe("This Text is 22 Chara      plus 5")
