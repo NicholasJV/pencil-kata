@@ -11,7 +11,7 @@ describe("Erasing: ", function(){
         /*   Pencil(point, eraser, length)   */
         strong_pencil = new Pencil(500, 700, 40)
         weak_pencil = new Pencil(20, 10, 10)
-        test_page = new Paper('')
+        test_page = new Paper()
         woodchuck_test_phrase =
             'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
         Write(test_page, strong_pencil, woodchuck_test_phrase)

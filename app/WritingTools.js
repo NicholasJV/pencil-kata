@@ -1,6 +1,6 @@
 
 function Paper (initial_text){
-    this.text = initial_text
+    this.text = initial_text || ''
     this.timestamp = Date.now()
 }
 

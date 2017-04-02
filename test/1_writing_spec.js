@@ -10,7 +10,7 @@ describe("Writing : ", function(){
         /*   Pencil( point, eraser, length )   */
         strong_pencil = new Pencil(500, 700, 40)
         no_2_pencil = new Pencil(200, 300, 30)
-        test_page = new Paper('')
+        test_page = new Paper()
     })
 
     it("Creates pencils with correct properties", function(){
@@ -30,7 +30,7 @@ describe("Writing : ", function(){
         )
     })
 
-    it("Writes to a piece of paper multiple times correctly", function(){
+    it("Writes to a piece of paper multiple times", function(){
         Write(test_page, no_2_pencil, 'The quick brown fox')
         Write(test_page, no_2_pencil, ' jumped over the lazy dog.')
         Write(test_page, no_2_pencil, ' Then a pig flew by.')
@@ -52,7 +52,7 @@ describe("Durability : ", function(){
         // Pencil(point, eraser, length)
         strong_pencil = new Pencil(500, 700, 40)
         weak_pencil = new Pencil(20, 10, 10)
-        test_page = new Paper('')
+        test_page = new Paper()
     })
 
     it("Pencil degrades and sharpens properly", function(){
