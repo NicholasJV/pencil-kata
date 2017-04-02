@@ -3,6 +3,25 @@
 // and returns the mutated data in the same structure
 // More functional style enables method chaining
 
+function Writer() {
+    this.context = {}
+}
+
+Writer.prototype.write = function write(text){
+    Write(this.context.paper, this.context.pencil, text)
+    return this
+}
+
+Writer.prototype.erase = function erase(text){
+    Erase(this.context.paper, this.context.pencil, text)
+    return this
+}
+
+Writer.prototype.insertEdit = function insertEdit(text) {
+    InsertEdit(this.context.paper, this.context.pencil, text)
+    return this
+}
+
 function Write(paper, pencil, newText){
     if (pencil.isDead()){ return paper }
     var written = []
@@ -49,7 +68,7 @@ function InsertEdit(paper, pencil, newEditText){
     var paperText = paper.text.split('')
     var editTextIndex = 0
 
-    for ( var i = insertPoint; editTextIndex < newEditText.length; i++ ){
+    for (var i = insertPoint; editTextIndex < newEditText.length; i++ ){
         if (i >= paperText.length || pencil.isDead() ) { break }
         var char = newEditText[editTextIndex]
         if (paperText[i] === ' '){

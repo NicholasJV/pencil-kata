@@ -30,3 +30,34 @@ describe("Combined Actions : ", function(){
     })
 
 })
+
+describe("Functional basic chaining : ", function(){
+
+    var writer
+
+    beforeEach(function(){
+        writer = new Writer()
+        writer.context = { paper: new Paper(''), pencil: new Pencil(200, 500, 30)}
+    })
+
+    it("Sets a new writer context with a new pencil and paper", function() {
+        expect(writer.context.pencil.length).toBe(30)
+    })
+
+    it("Writes to the writer's paper and returns it", function() {
+        writer.write('no justice just us')
+        expect(writer.context.paper.text).toBe('no justice just us')
+    })
+
+    it("Erase method chains onto a write action and erases properly", function() {
+        writer.write('no justice just us').erase('no justice')
+        expect(writer.context.paper.text).toBe('           just us')
+    })
+
+    it("Insert method chains on and inserts properly", function() {
+        writer.write('no justice just us').erase('no justice')
+            .insertEdit("we're here ")
+        expect(writer.context.paper.text).toBe("we're here just us")
+    })
+
+})
