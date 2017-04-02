@@ -22,25 +22,15 @@ Pencil.prototype.sharpen = function() {
     return this
 }
 
-Pencil.prototype.degradePoint = function(text) {
-    var points = 0
-    var code = text.charCodeAt()
+Pencil.prototype.degradePoint = function(char) {
+    if ((char == ' ') || (char == '\t') || (char == '\n')){ return this }
 
-// make this more readable
-    // assumes punctuation are also equivalent to lowercase nd degrade by 1
-    if (code <= 122 && code >= 33){
-        points++
-        if (code <= 90 && code >= 65){
-            // uppercase degradePoints by 2
-            points++
-        }
-    }
-
-    if (points > this.currentPointDurability) {
-      this.currentPointDurability = 0
+    if (char !== char.toLowerCase()) {
+      this.currentPointDurability -= 2
     } else {
-      this.currentPointDurability -= points
+      this.currentPointDurability--
     }
+
     return this
 }
 

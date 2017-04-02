@@ -85,7 +85,7 @@ describe("Insert Editing : ", function(){
         )
     })
 
-    it("Adds an edit text into first whitespace, overwrites '@' on existing characters", 
+    it("Adds an edit text into first whitespace, overwrites '@' on existing characters",
     function(){
         InsertEdit(erased_page, strong_pencil, ' bananas would a gorilla eat if... wait...')
         expect(erased_page.text).toBe(
