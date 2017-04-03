@@ -28,13 +28,15 @@ Pencil.prototype.isDead = function() {
 }
 
 Pencil.prototype.degradePoint = function(char) {
-    if ((char == ' ') || (char == '\t') || (char == '\n')){ return this }
+    if ((char == ' ') || (char == '\t') || (char == '\n')) { return this }
+    if (this.sharpness < 1) { return false }
 
     if (char !== char.toLowerCase()) {
-      this.sharpness -= 2
+        if (this.sharpness < 2) { return false }
+        this.sharpness -= 2
     } else {
-      this.sharpness--
+        this.sharpness--
     }
 
-    return this
+    return true
 }

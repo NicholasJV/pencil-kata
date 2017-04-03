@@ -76,7 +76,7 @@ describe("Insert Editing : ", function(){
             'How much                        chuck if a     chuck could chuck     ?'
         )
     })
-    
+
     it("Adds an edit text into first whitespace (longer than two) properly", function(){
         /*   InsertEdit params (paper, pencil, textToInsert)   */
         InsertEdit(erased_page, strong_pencil, ' bananas would a gorilla')
@@ -93,19 +93,19 @@ describe("Insert Editing : ", function(){
         )
     })
 
-  /*_____ Example text edit to help visualize overwrite process: ______________*\
-   *
-   *  below is: 1. starting text,
-   *            2. erased text,
-   *            3. new text,
-   *            4. ending text,
-   *            5. text ultimately written after collisions are determined.
-   *
-   *  1. 'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
-   *  2. 'How much                        chuck if a     chuck could chuck     ?'
-   *  3.          'bananas would a gorilla eat if... wait...'
-   *  4. 'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
-   *  5.          'bananas would a gorilla@@@@@ @@.@ wait@@@'
-  \*___________________________________________________________________________*/
+/*_____ Example text edit to help visualize overwrite process: ______________*\
+ *
+ *  below is: 1. starting text,
+ *            2. erased text,
+ *            3. new text,
+ *            4. ending text,
+ *            5. text ultimately written after collisions are determined.
+ *
+ *  1. 'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
+ *  2. 'How much                        chuck if a     chuck could chuck     ?'
+ *  3.          'bananas would a gorilla eat if... wait...'
+ *  4. 'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
+ *  5.          'bananas would a gorilla@@@@@ @@.@ wait@@@'
+\*___________________________________________________________________________*/
 
 })

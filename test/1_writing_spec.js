@@ -67,20 +67,27 @@ describe("Durability : ", function(){
         expect( strong_pencil.length ).toEqual(ogLength - 1)
     })
 
-     it("Pencil degrades fully without negative durability, sharpens back", function(){
+    it("Pencil degrades fully without negative durability, sharpens back", function(){
         Write(test_page, weak_pencil, textDegrade25)
         expect( weak_pencil.sharpness ).toEqual(0)
 
         weak_pencil.sharpen()
         expect( weak_pencil.pointDurabilityRating ).toEqual(20)
-     })
+    })
 
-     it("Pencil won't write if point is spent", function(){
+    it("Pencil won't write if point is spent", function(){
         Write(test_page, weak_pencil,
             'Lowercaselettersshoulddegradethepencilpointbyavalueofone'
         )
         expect( weak_pencil.sharpness ).toEqual(0)
         expect( test_page.text ).toBe('Lowercaseletterssho')
-     })
+    })
+
+    it("Pencil won't write a capital letter if only 1 durability point is left", function(){
+        Write(test_page, weak_pencil, 'This text spent 19 pts')
+        expect( weak_pencil.sharpness).toBe(1)
+        Write(test_page, weak_pencil, 'X')
+        expect(test_page.text).toBe('This text spent 19 pts')
+    })
 
 })

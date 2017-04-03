@@ -28,22 +28,21 @@ Writer.prototype.setPaper = function (paper) {
 }
 
 function Write(paper, pencil, newText) {
-    if (pencil.isDead()){ return paper }
+    if (pencil.isDead()){ return }
     var written = []
 
     for ( var i = 0; i < newText.length; i++ ){
-        if (!pencil.sharpness) { break }
         var char = newText[i]
-        pencil.degradePoint(char)
+        var valid = pencil.degradePoint(char)
+        if (!valid) { break }
         written.push(char)
     }
 
     paper.text += written.join('')
-    return paper
 }
 
 function Erase(paper, pencil, textToErase){
-    if (pencil.eraserDead()) { return paper }
+    if (pencil.eraserDead()) { return }
     var eraseLength = textToErase.length,
         paperText = paper.text.split(''),
         eraseIndex = paper.text.lastIndexOf(textToErase)
@@ -59,11 +58,10 @@ function Erase(paper, pencil, textToErase){
     }
 
     paper.text = paperText.join('')
-    return paper
 }
 
 function InsertEdit(paper, pencil, newEditText){
-    if (pencil.isDead()) { return paper }
+    if (pencil.isDead()) { return }
     /**
      * Only insert into triple whitespace to leave the option of
      *   double whitespace for sentence break.
@@ -77,8 +75,9 @@ function InsertEdit(paper, pencil, newEditText){
         if (i >= paperText.length || pencil.isDead() ) { break }
         var char = newEditText[editTextIndex]
         if (paperText[i] === ' '){
+            var valid = pencil.degradePoint(char)
+            if (!valid) { break }
             paperText[i] = char
-            pencil.degradePoint(char)
         } else {
             paperText[i] = '@'
             pencil.degradePoint('@')
@@ -87,5 +86,4 @@ function InsertEdit(paper, pencil, newEditText){
     }
 
     paper.text = paperText.join('')
-    return paper
 }
