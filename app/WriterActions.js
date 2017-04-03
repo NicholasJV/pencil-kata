@@ -1,24 +1,21 @@
 
-// Attach these functions to a Writer class that takes context data
-// and returns the mutated data in the same structure
-// More functional style enables method chaining
-
 function Writer() {
-    this.context = {}
+    this.pencil = {}
+    this.paper = {}
 }
 
 Writer.prototype.write = function write(text){
-    Write(this.context.paper, this.context.pencil, text)
+    Write(this.paper, this.pencil, text)
     return this
 }
 
 Writer.prototype.erase = function erase(text){
-    Erase(this.context.paper, this.context.pencil, text)
+    Erase(this.paper, this.pencil, text)
     return this
 }
 
 Writer.prototype.insertEdit = function insertEdit(text) {
-    InsertEdit(this.context.paper, this.context.pencil, text)
+    InsertEdit(this.paper, this.pencil, text)
     return this
 }
 

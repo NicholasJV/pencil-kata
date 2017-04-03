@@ -8,7 +8,7 @@ describe("Erasing: ", function(){
         page_02
 
     beforeEach(function(){
-        /*   Pencil(point, eraser, length)   */
+        /*   Pencil params (point, eraser, length)   */
         strong_pencil = new Pencil(500, 700, 40)
         weak_pencil = new Pencil(20, 10, 10)
         test_page = new Paper()
@@ -19,12 +19,11 @@ describe("Erasing: ", function(){
 
     it("Erases a word or phrase correctly (the last instance of the word on the paper)",
     function(){
-        // Erase(paper, pencil, textToErase)
+        /*   Erase params (paper, pencil, textToErase)   */
         Erase(test_page, strong_pencil, 'wood')
         expect(test_page.text).toBe(
             'How much wood would a woodchuck chuck if a woodchuck could chuck     ?'
         )
-        /*   Check cases with leading/tralling space, should perform same   */
         Erase(test_page, strong_pencil, ' wood')
         expect(test_page.text).toBe(
             'How much wood would a woodchuck chuck if a     chuck could chuck     ?'
@@ -69,16 +68,16 @@ describe("Insert Editing : ", function(){
         erased_page
 
     beforeEach(function(){
-        // Pencil(point, eraser, length)
+        /*   Pencil params (point, eraser, length)   */
         strong_pencil = new Pencil(500, 700, 40)
         weak_pencil = new Pencil(20, 10, 10)
-        // Paper(title, initial_text)
+        /*   Paper params (title, initial_text)   */
         erased_page = new Paper(
             'How much                        chuck if a     chuck could chuck     ?'
         )
     })
     it("Adds an edit text into first whitespace (longer than two) properly", function(){
-        // InsertEdit(paper, pencil, textToInsert)
+        /*   InsertEdit params (paper, pencil, textToInsert)   */
         InsertEdit(erased_page, strong_pencil, ' bananas would a gorilla')
         expect(erased_page.text).toBe(
           'How much bananas would a gorillachuck if a     chuck could chuck     ?'
@@ -101,11 +100,11 @@ describe("Insert Editing : ", function(){
    *            4. ending text,
    *            5. text ultimately written after collisions are determined.
    *
-   * 1. 'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
-   * 2. 'How much                        chuck if a     chuck could chuck     ?'
-   * 3.          'bananas would a gorilla eat if... wait...'
-   * 4. 'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
-   * 5.          'bananas would a gorilla@@@@@ @@.@ wait@@@'
+   *  1. 'How much wood would a woodchuck chuck if a woodchuck could chuck wood?'
+   *  2. 'How much                        chuck if a     chuck could chuck     ?'
+   *  3.          'bananas would a gorilla eat if... wait...'
+   *  4. 'How much bananas would a gorilla@@@@@i@@.@ wait@@@ck could chuck     ?'
+   *  5.          'bananas would a gorilla@@@@@ @@.@ wait@@@'
   \*___________________________________________________________________________*/
 
 })
