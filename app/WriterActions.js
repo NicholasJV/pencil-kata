@@ -4,22 +4,30 @@ function Writer() {
     this.paper = {}
 }
 
-Writer.prototype.write = function write(text){
+Writer.prototype.write = function (text) {
     Write(this.paper, this.pencil, text)
     return this
 }
 
-Writer.prototype.erase = function erase(text){
+Writer.prototype.erase = function (text) {
     Erase(this.paper, this.pencil, text)
     return this
 }
 
-Writer.prototype.insertEdit = function insertEdit(text) {
+Writer.prototype.insertEdit = function (text) {
     InsertEdit(this.paper, this.pencil, text)
     return this
 }
 
-function Write(paper, pencil, newText){
+Writer.prototype.setPencil = function (pencil) {
+    this.pencil = pencil
+}
+
+Writer.prototype.setPaper = function (paper) {
+    this.paper = paper
+}
+
+function Write(paper, pencil, newText) {
     if (pencil.isDead()){ return paper }
     var written = []
 
@@ -41,7 +49,7 @@ function Erase(paper, pencil, textToErase){
         eraseIndex = paper.text.lastIndexOf(textToErase)
     if (eraseIndex < 0) {return paper}
 
-    for (var i = eraseIndex-1 + textToErase.length; i >= eraseIndex; i--){
+    for ( var i = eraseIndex-1 + textToErase.length; i >= eraseIndex; i-- ){
         if (paperText[i] === ' ') { continue }
         if (pencil.eraserStrength){
             pencil.eraserStrength--
@@ -56,16 +64,16 @@ function Erase(paper, pencil, textToErase){
 
 function InsertEdit(paper, pencil, newEditText){
     if (pencil.isDead()) { return paper }
-    /*****
-     * Only insert to triple whitespace to leave the option of
-     *   double whitespace as a sentence break.
+    /**
+     * Only insert into triple whitespace to leave the option of
+     *   double whitespace for sentence break.
      */
     var insertPoint = paper.text.indexOf('   ')
     if (insertPoint < 0) { return paper }
     var paperText = paper.text.split('')
     var editTextIndex = 0
 
-    for (var i = insertPoint; editTextIndex < newEditText.length; i++ ){
+    for ( var i = insertPoint; editTextIndex < newEditText.length; i++ ){
         if (i >= paperText.length || pencil.isDead() ) { break }
         var char = newEditText[editTextIndex]
         if (paperText[i] === ' '){

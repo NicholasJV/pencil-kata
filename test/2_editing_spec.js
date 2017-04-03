@@ -76,6 +76,7 @@ describe("Insert Editing : ", function(){
             'How much                        chuck if a     chuck could chuck     ?'
         )
     })
+    
     it("Adds an edit text into first whitespace (longer than two) properly", function(){
         /*   InsertEdit params (paper, pencil, textToInsert)   */
         InsertEdit(erased_page, strong_pencil, ' bananas would a gorilla')

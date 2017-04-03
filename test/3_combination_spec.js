@@ -36,12 +36,16 @@ describe("Combination test : ", function(){
 
 describe("Functional basic chaining : ", function(){
 
-    var writer
+    var writer,
+        test_page,
+        test_pencil
 
     beforeEach(function(){
         writer = new Writer()
-        writer.paper = new Paper()
-        writer.pencil = new Pencil(200, 500, 30)
+        test_page = new Paper()
+        writer.setPaper(test_page)
+        test_pencil = new Pencil(200, 500, 30)
+        writer.setPencil(test_pencil) 
     })
 
     it("Sets a new writer context with a new pencil and paper", function() {
@@ -78,14 +82,14 @@ describe("Functional combination test : ", function(){
         prep_pencil = new Pencil(500, 500, 50)
         test_page = new Paper()
         writer = new Writer()
-        writer.paper = test_page
-        writer.pencil = prep_pencil
+        writer.setPaper(test_page)
+        writer.setPencil(prep_pencil)
         writer.write("This Text is 22 Characters")
     })
 
     it("Functional implementation produces the same results as the combination test:",
     function(){
-        writer.pencil = pencil_on_life_support
+        writer.setPencil(pencil_on_life_support)
         writer.write(' plus 5').erase('Characters')
         expect(pencil_on_life_support.sharpness).toBe(7)
 
