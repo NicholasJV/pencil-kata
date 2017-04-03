@@ -1,8 +1,7 @@
 ## Pencil Kata
 #### TDD exercise
 
-You need [node](https://nodejs.org/en/) installed to run this. There are many ways to do this, but you can use Homebrew on OSX.
-See node notes below for some more info.
+You need [node](https://nodejs.org/en/) installed to run this. See node notes below for some more info.
 
 -----
 
@@ -19,15 +18,15 @@ To run tests:
 
 `npm test`
 
-This will launch Chrome as the browser environment by default. It will automatically close when you stop the test process in terminal (and vice versa -- closing the browser will stop the test process). `Ctrl-C` will stop the test process manually, but you probably guessed that.
+This will launch Chrome as the browser environment by default. It will automatically close when you stop the test process in terminal (`Ctrl-C`). Closing the Karma browser window will also stop the test process).  
 
 Safari and Firefox launchers will also install by default; to specify which ones launch automatically, uncomment them in the `browsers` property of `karma.conf.js`
 
 The tests will reload automatically on changes to the files. You can view the test output in the console, or use
 
-`npm run browserTestOutput` to open an html file that displays the test output in a clear format.
+`npm run html` to open an html file that displays the test output in a clear format.
 
-The html file should be overwritten every file change, so just refresh the browser to see updated test output.
+The html file will be overwritten on every file change, so just refresh the browser to see updated test output.
 
 Test coverage is automatically generated into an html report inside test/coverage/[subfolder], with a subfolder for each browser enabled. Use
 
@@ -44,11 +43,10 @@ This runs the tests as before but disables coverage so that the code is not mini
 -----
 
 #### node notes:
+There are many ways to install [node](https://nodejs.org/en/). You likely already have a system installation, but it may not be up to date.
 
-some people have issues with homebrew installation:
+The easiest way to install is probably with Homebrew on OSX.
 
-https://gist.github.com/DanHerbert/9520689
+Note that some people have issues with Homebrew installation: https://gist.github.com/DanHerbert/9520689
 
-version managers are considered best practice by reputable sources:
-
-[nvm](https://github.com/creationix/nvm/) or [n](https://www.npmjs.com/package/n2)
+Version managers are considered best practice by reputable sources: [nvm](https://github.com/creationix/nvm/) or [n](https://www.npmjs.com/package/n2)

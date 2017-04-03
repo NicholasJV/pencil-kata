@@ -45,7 +45,7 @@ describe("Functional basic chaining : ", function(){
         test_page = new Paper()
         writer.setPaper(test_page)
         test_pencil = new Pencil(200, 500, 30)
-        writer.setPencil(test_pencil) 
+        writer.setPencil(test_pencil)
     })
 
     it("Sets a new writer context with a new pencil and paper", function() {
@@ -87,7 +87,7 @@ describe("Functional combination test : ", function(){
         writer.write("This Text is 22 Characters")
     })
 
-    it("Functional implementation produces the same results as the combination test:",
+    it("Functional implementation produces the same results as the combination test",
     function(){
         writer.setPencil(pencil_on_life_support)
         writer.write(' plus 5').erase('Characters')

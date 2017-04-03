@@ -1,11 +1,13 @@
 {
-  "name": "pencil",
+  "name": "pencil-kata",
   "version": "1.0.0",
   "description": "Kata for Pillar",
-  "main": "index.js",
+  "engines": {
+    "node": "6.x"
+  },
   "scripts": {
     "test": "karma start karma.conf.js",
-    "htmlKarma": "open ./test/karmaUnitTests.html",
+    "html": "open ./test/karmaUnitTests.html",
     "coverage": "open ./test/coverage/**/index.html",
     "debug": "karma start --debug karma.conf.js"
   },
