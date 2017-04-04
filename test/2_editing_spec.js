@@ -1,5 +1,5 @@
 
-describe("Erasing: ", function(){
+describe("Erasing : ", function(){
 
     var strong_pencil,
         weak_pencil,
